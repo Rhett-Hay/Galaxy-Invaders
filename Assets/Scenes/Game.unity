@@ -1457,6 +1457,8 @@ MonoBehaviour:
   _laserPrefab: {fileID: 1887905400182430086, guid: dfd6781099981384288dbecb1510c11c, type: 3}
   _score: 0
   _uiManager: {fileID: 418202036}
+  _leftEngine: {fileID: 430986614}
+  _rightEngine: {fileID: 1726989989}
 --- !u!212 &1518002798
 SpriteRenderer:
   m_ObjectHideFlags: 0

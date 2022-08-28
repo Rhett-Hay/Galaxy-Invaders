@@ -33,6 +33,8 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private int _score;
     // Handle to UI Manager
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] GameObject _leftEngine;
+    [SerializeField] GameObject _rightEngine;
 
     // Start is called before the first frame update
     void Start()
@@ -142,6 +144,16 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         _lives -= 1;
+
+        if (_lives == 2)
+        {
+            _rightEngine.SetActive(true);
+        }
+        else if (_lives == 1)
+        {
+            _leftEngine.SetActive(true);
+        }
+
         _uiManager.UpdateLives(_lives);
 
         // If player has zero lives, destroy player
