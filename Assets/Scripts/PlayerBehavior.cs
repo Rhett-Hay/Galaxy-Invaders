@@ -35,6 +35,8 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private UIManager _uiManager;
     [SerializeField] GameObject _leftEngine;
     [SerializeField] GameObject _rightEngine;
+    // Player's explosion effect
+    [SerializeField] GameObject _playerExplosionPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -78,40 +80,16 @@ public class PlayerBehavior : MonoBehaviour
         // IF space key is pressed,
         // IF tripleShotActive is True
         // fire TripleShot lasers prefab
-        // Else, fire one laser shot
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        // Else, fire one laser shot        
+        if (_isTripleShotActive)
         {
-            if (_isTripleShotActive)
-            {
-                Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(laserPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
-            }
+            Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
         }
-        _canFire = false;
-        StartCoroutine(LaserDelay());*/
-        
-        //if (_canFire > Time.time)
-        //{
-            if (_isTripleShotActive)
-            {
-                Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
-            }
-        //}
-
+        else
+        {
+            Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+        }
     }
-
-    /*private IEnumerator LaserDelay()
-    {
-        yield return new WaitForSeconds(0.3f);
-        _canFire = true;
-    }*/
 
     void PlayerMovement()
     {
@@ -161,6 +139,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             // Stop spawning enemies from SpawnManager OnPlayerDeath() method
             _spawnManager.OnPlayerDeath();
+            Instantiate(_playerExplosionPrefab, transform.position, Quaternion.identity);            
             Destroy(this.gameObject);
         }
     }

@@ -18,6 +18,7 @@ public class EnemyBehavior : MonoBehaviour
     EnemyBehavior _enemy;
     Collider2D _collider;
     Animator _anim;
+    [SerializeField] GameObject _thruster;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +73,7 @@ public class EnemyBehavior : MonoBehaviour
 
             // Use the Animator's OnPlayerDeath trigger.
             _anim.SetTrigger("OnPlayerDeath");
+            _thruster.SetActive(false);
             // Turn the enemies speed off.
             _speed = 0;
             // Destroy the Enemy's script component.
@@ -90,6 +92,7 @@ public class EnemyBehavior : MonoBehaviour
             }
 
             _anim.SetTrigger("OnPlayerDeath");
+            _thruster.SetActive(false);
             _speed = 0;
             Destroy(_enemy);
             // Destroy the Enemy's collider component.

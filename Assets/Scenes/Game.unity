@@ -1459,6 +1459,7 @@ MonoBehaviour:
   _uiManager: {fileID: 418202036}
   _leftEngine: {fileID: 430986614}
   _rightEngine: {fileID: 1726989989}
+  _playerExplosionPrefab: {fileID: 8365061684751402893, guid: a69c7bb2844d7514ab78c2734b068b34, type: 3}
 --- !u!212 &1518002798
 SpriteRenderer:
   m_ObjectHideFlags: 0
