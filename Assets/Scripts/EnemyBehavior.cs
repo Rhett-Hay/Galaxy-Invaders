@@ -18,7 +18,9 @@ public class EnemyBehavior : MonoBehaviour
     EnemyBehavior _enemy;
     Collider2D _collider;
     Animator _anim;
+    AudioSource _audioSource;
     [SerializeField] GameObject _thruster;
+    [SerializeField] GameObject _enemyExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class EnemyBehavior : MonoBehaviour
         _enemy = GetComponent<EnemyBehavior>();
         _collider = GetComponent<Collider2D>();
         _anim = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (_enemy == null)
         {
@@ -42,6 +45,11 @@ public class EnemyBehavior : MonoBehaviour
         if (_anim == null)
         {
             Debug.LogError("Animator is NULL!");
+        }
+
+        if (_audioSource == null)
+        {
+            Debug.LogError("Audio Source is NULL!");
         }
     }
 
@@ -76,6 +84,8 @@ public class EnemyBehavior : MonoBehaviour
             _thruster.SetActive(false);
             // Turn the enemies speed off.
             _speed = 0;
+            // Play explosion sound
+            _audioSource.Play();
             // Destroy the Enemy's script component.
             Destroy(_enemy);
             Destroy(this.gameObject, 2.8f);
@@ -94,6 +104,7 @@ public class EnemyBehavior : MonoBehaviour
             _anim.SetTrigger("OnPlayerDeath");
             _thruster.SetActive(false);
             _speed = 0;
+            _audioSource.Play();
             Destroy(_enemy);
             // Destroy the Enemy's collider component.
             Destroy(_collider);

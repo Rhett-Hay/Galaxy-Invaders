@@ -7,12 +7,10 @@ public class PowerUps : MonoBehaviour
     [SerializeField] private float _speed = 3f;
     // ID numbers for each powerup: 0-Triple Shot, 1-Speed, 2-Shield
     [SerializeField] private int _powerupID;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Audio clip handle for when Powerups are collected
+    [SerializeField] AudioClip _powerUpClip;
+    // Volume level for Powerups audio clips
+    [SerializeField] float _volume;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -36,6 +34,10 @@ public class PowerUps : MonoBehaviour
             // Communicate with the Player script,
             // and create a handle to the component we need access to
             PlayerBehavior player = other.transform.GetComponent<PlayerBehavior>();
+
+            // When Player collides with a powerup, audio clip will play
+            AudioSource.PlayClipAtPoint(_powerUpClip, new Vector3(0, 0, -10f), _volume);
+            Debug.Log(_powerUpClip.name);
 
             if (player != null)
             {

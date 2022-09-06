@@ -37,6 +37,10 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] GameObject _rightEngine;
     // Player's explosion effect
     [SerializeField] GameObject _playerExplosionPrefab;
+    // Handle to Audio Source component
+    private AudioSource _audioSource;
+    // Laser sound effects
+    [SerializeField] AudioClip _laserSoundClip;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +61,14 @@ public class PlayerBehavior : MonoBehaviour
         if (_uiManager == null)
         {
             Debug.LogError("UI Manager is NULL!");
+        }
+
+        // Use handle to access the Audio Source component
+        _audioSource = GameObject.FindObjectOfType<AudioSource>().GetComponent<AudioSource>();
+
+        if (_audioSource == null)
+        {
+            Debug.LogError("Audio Source is NULL!");
         }
     }
 
@@ -89,6 +101,11 @@ public class PlayerBehavior : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         }
+
+        // Set the Audio Source's Clip setting to the Laser Sound clip
+        _audioSource.clip = _laserSoundClip;
+        // Play Laser Sound clip
+        _audioSource.Play();
     }
 
     void PlayerMovement()
