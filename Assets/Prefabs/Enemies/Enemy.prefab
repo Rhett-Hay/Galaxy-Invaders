@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5029013929500452674}
   - component: {fileID: 7116735700511110798}
   - component: {fileID: 5564300919305439078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Enemy_Thruster '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7377437743906050805}
   - component: {fileID: 5025821236180623342}
   - component: {fileID: 4099735227172790671}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4895600171535395206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19474313, y: 2.9782166, z: -0.3558784}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -259,6 +259,9 @@ MonoBehaviour:
   _maxX: 9
   _thruster: {fileID: 4494382012454326686}
   _enemyExplosion: {fileID: 461572786319917962, guid: 2034fba0c1a185a41bc2c4f3f0103855, type: 3}
+  _minFireRate: 2
+  _maxFireRate: 6
+  _enemyLaserPrefab: {fileID: 5137372938587685979, guid: 7605aa4cb4e42644db7636529cfaa333, type: 3}
 --- !u!95 &5025821236180623342
 Animator:
   serializedVersion: 4

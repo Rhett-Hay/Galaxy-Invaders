@@ -22,6 +22,13 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] GameObject _thruster;
     [SerializeField] GameObject _enemyExplosion;
 
+    float _fireRate;
+    [SerializeField] float _minFireRate;
+    [SerializeField] float _maxFireRate;
+    float _canFire = -1f;
+    [SerializeField] GameObject _enemyLaserPrefab;
+    GameObject _enemyLaser;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +38,11 @@ public class EnemyBehavior : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _anim = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+
+        if (_player == null)
+        {
+            Debug.LogError("Player script component is NULL!");
+        }
 
         if (_enemy == null)
         {
@@ -56,9 +68,36 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        EnemyMovement();
+        EnemyFireLaser();
+    }
+
+    private void EnemyFireLaser()
+    {
+        if (Time.time > _canFire)
+        {
+            // Enemy fire rate set between minimum and maximum values
+            _fireRate = Random.Range(_minFireRate, _maxFireRate);
+            // Reset the ability to fire to game time plus fire rate range
+            _canFire = Time.time + _fireRate;
+            // Instantiate Enemy lasers
+            _enemyLaser = Instantiate(_enemyLaserPrefab, transform.position, Quaternion.identity);
+            // Access each child Laser script component instantiated
+            LaserBehavior[] lasers = _enemyLaser.GetComponentsInChildren<LaserBehavior>();
+
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                // Each Enemy laser set to True
+                lasers[i].AssignEnemyLaser();
+            }
+        }
+    }
+
+    private void EnemyMovement()
+    {
         // Move down at 4 meters per second
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        // If the Player moves down off-screen,
+        // If the Enemy moves down off-screen,
         // respawn at the top of the screen at a Random X-axis position
         if (transform.position.y <= -6f)
         {

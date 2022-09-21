@@ -38,7 +38,7 @@ public class PlayerBehavior : MonoBehaviour
     // Player's explosion effect
     [SerializeField] GameObject _playerExplosionPrefab;
     // Handle to Audio Source component
-    private AudioSource _audioSource;
+    AudioSource _audioSource;
     // Laser sound effects
     [SerializeField] AudioClip _laserSoundClip;
 
@@ -63,8 +63,7 @@ public class PlayerBehavior : MonoBehaviour
             Debug.LogError("UI Manager is NULL!");
         }
 
-        // Use handle to access the Audio Source component
-        _audioSource = GameObject.FindObjectOfType<AudioSource>().GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (_audioSource == null)
         {
