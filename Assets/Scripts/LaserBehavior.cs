@@ -10,7 +10,7 @@ public class LaserBehavior : MonoBehaviour
     bool _isEnemyLaser = false;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (_isEnemyLaser == false)
         {
