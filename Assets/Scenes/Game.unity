@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18380085, g: 0.22841118, b: 0.30004692, a: 1}
+  m_IndirectSpecularColor: {r: 0.4513464, g: 0.5003181, b: 0.5695264, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -951,6 +951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -1371,6 +1372,7 @@ MonoBehaviour:
   - {fileID: 765479496146381215, guid: f7026561f85caf244be048706eb55c1b, type: 3}
   - {fileID: 5637149447945618395, guid: c245b94880994b143b470a2500f1e220, type: 3}
   - {fileID: 8239411353890355228, guid: a380e5cc3b041694f8d25ea0581bd129, type: 3}
+  - {fileID: 7255443677222781605, guid: fd64cf19c8741e74280964ae1801f2df, type: 3}
 --- !u!4 &1332433103
 Transform:
   m_ObjectHideFlags: 0
@@ -1398,7 +1400,8 @@ GameObject:
   - component: {fileID: 1423857342}
   - component: {fileID: 1423857341}
   - component: {fileID: 1423857340}
-  - component: {fileID: 1423857343}
+  - component: {fileID: 1423857345}
+  - component: {fileID: 1423857344}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1464,7 +1467,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423857339}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.044669762, y: -0.011390419, z: -0.00050938135, w: -0.9989367}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1472,7 +1475,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1423857343
+--- !u!114 &1423857344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423857339}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edec0b12fe9b54699ac41de292fe61d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  folderBaseName: Screenshots
+  frameRate: 1
+  framesToCapture: 1
+--- !u!114 &1423857345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1670,11 +1688,8 @@ MonoBehaviour:
   _canFire: -1
   _fireRate: 0.3
   _lives: 3
-  _isTripleShotActive: 0
   _tripleShotPrefab: {fileID: 3178967982180437363, guid: 272065b16e73d7c49aae51c3ceda524e, type: 3}
-  _isSpeedBoostActive: 0
   _speedMultiplier: 2
-  _isShieldActive: 0
   _shield: {fileID: 118734587}
   _laserPrefab: {fileID: 1887905400182430086, guid: dfd6781099981384288dbecb1510c11c, type: 3}
   _score: 0

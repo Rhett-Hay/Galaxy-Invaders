@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,17 +14,23 @@ public class PlayerBehavior : MonoBehaviour
     private SpawnManager _spawnManager;
 
     // Is TripleShot lasers active?
-    [SerializeField] private bool _isTripleShotActive;
+    private bool _isTripleShotActive;
     // Get TripleShot prefab game object
     [SerializeField] GameObject _tripleShotPrefab;
     // Is Speed Boost active?
-    [SerializeField] private bool _isSpeedBoostActive;
+    private bool _isSpeedBoostActive;
     // Double the performance output
     [SerializeField] private float _speedMultiplier = 2f;
     // Is Shield active?
-    [SerializeField] private bool _isShieldActive;
+    private bool _isShieldActive;
     // Get Shield prefab game object
     [SerializeField] GameObject _shield;
+    // Is Ammo powerup active
+    /*[SerializeField] private bool _isAmmoActive;
+    // Maximum ammo amount for the Player
+    [SerializeField] private int _maxAmmo;
+    // Current amount of ammo for Player
+    [SerializeField] int _currentAmmo;*/
 
     // Retrieve the laser prefab
     [SerializeField] GameObject _laserPrefab;
@@ -45,6 +50,9 @@ public class PlayerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Current amount of ammo the Player will start the game off with
+        //_currentAmmo = _maxAmmo;
+
         // starting position of the player when the game starts.
         transform.position = new Vector3(0, -3, 0);
         // Get the SpawnManager script component from Spawn Manager object
@@ -95,10 +103,12 @@ public class PlayerBehavior : MonoBehaviour
         if (_isTripleShotActive)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            //_currentAmmo--;
         }
         else
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+            //_currentAmmo--;
         }
 
         // Set the Audio Source's Clip setting to the Laser Sound clip
@@ -218,4 +228,24 @@ public class PlayerBehavior : MonoBehaviour
         _isShieldActive = false;
         _shield.SetActive(false);
     }
+
+    /*public void AmmoActive()
+    {
+        _isAmmoActive = true;
+        // Current Ammo set to the Max Ammo amount
+        _currentAmmo += _maxAmmo;
+        // Adjust Current Ammo amount to each laser shot
+        if (_currentAmmo > _maxAmmo)
+        {
+            _currentAmmo = _maxAmmo;
+        }
+
+        StartCoroutine(AmmoPowerDownRoutine());
+    }
+
+    IEnumerator AmmoPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5f);
+        _isAmmoActive = false;
+    }*/
 }
